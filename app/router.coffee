@@ -6,5 +6,9 @@ Router = Ember.Router.extend
 
 Router.map ->
 
+  @route 'dashboard'
+  @route 'album', path: '/album/:album_id'
+  @route 'track', path: '/track/:track_id'
+  @route 'album.new', path: '/album/new'
 
 `export default Router;`

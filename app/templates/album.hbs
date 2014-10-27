@@ -1,0 +1,11 @@
+
+<h1> Album: {{name}}</h1>
+<button class="play-album" {{action "playAlbum"}}>Play</button>
+
+<ul>
+  {{#each track in controller.tracks}}
+  <li> {{track.name}}</li>
+  {{/each}}
+</ul>
+<div id="playCount">Played {{playCount}} times</div>
+{{outlet}}

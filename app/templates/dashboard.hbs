@@ -1,0 +1,18 @@
+<h1> Dashboard </h1>
+
+
+<h2> Favourite Albums </h2>
+<ul class="top-albums">
+  {{#each album in albums}}
+    <li> {{#link-to 'album' album }} {{album.name}} {{/link-to}} </li>
+  {{/each}}
+</ul>
+
+<h2> Favourite Tracks </h2>
+<ul class="top-tracks">
+  {{#each track in tracks}}
+    <li> {{#link-to 'track' track }} {{track.name}} {{/link-to}} </li>
+  {{/each}}
+</ul>
+
+{{link-to "Add Album" 'album.new' }}
