@@ -1,13 +1,21 @@
 `import Ember from 'ember'`
 `import startApp from '../helpers/start-app'`
+`import albumFactory from '../fixtures'`
 
 App = null
+testHelper = null
+store = null
+TestHelper = Ember.Object.createWithMixins(FactoryGuyTestMixin)
 
 module 'Acceptance: Dashboard',
   setup: ->
     App = startApp()
+    testHelper = TestHelper.setup(App)
+    store = testHelper.getStore()
+    albums = store.makeList('album', 5)
 
   teardown: ->
+    Ember.run -> testHelper.teardown()
     Ember.run App, 'destroy'
 
 test 'visiting /dashboard', ->

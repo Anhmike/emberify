@@ -1,6 +1,7 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var pickFiles = require('broccoli-static-compiler');
 
 var app = new EmberApp();
 
@@ -18,5 +19,10 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+var factoryGuy = pickFiles('bower_components', {
+   srcDir: '/',
+   files: ['ember-data-factory-guy/dist/ember-data-factory-guy.js'],
+   destDir: '/assets'
+});
 
-module.exports = app.toTree();
+module.exports = app.toTree(factoryGuy);
