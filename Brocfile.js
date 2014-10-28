@@ -19,10 +19,15 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+
 var factoryGuy = pickFiles('bower_components', {
    srcDir: '/',
    files: ['ember-data-factory-guy/dist/ember-data-factory-guy.js'],
    destDir: '/assets'
 });
+
+if (app.env === 'development') {
+  app.import('bower_components/jquery-mockjax/jquery.mockjax.js');
+}
 
 module.exports = app.toTree(factoryGuy);

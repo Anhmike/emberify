@@ -12,7 +12,12 @@ module 'Acceptance: Dashboard',
     App = startApp()
     testHelper = TestHelper.setup(App)
     store = testHelper.getStore()
-    albums = store.makeList('album', 5)
+    albums = FactoryGuy.buildList('album', 7)
+    testHelper.stubEndpointForHttpRequest('/api/albums',  albums: albums )
+
+    tracks = FactoryGuy.buildList('track', 10)
+    testHelper.stubEndpointForHttpRequest('/api/tracks',  tracks: tracks )
+
 
   teardown: ->
     Ember.run -> testHelper.teardown()
@@ -38,7 +43,7 @@ test 'displays top tracks', ->
 
 test 'top albums links to the album page', ->
   visit('/dashboard').then ->
-    click('a:contains("Bleach")')
+    click('a:contains("Album1")')
 
   andThen ->
     equal(currentPath(), 'album', "Should display the first album")
